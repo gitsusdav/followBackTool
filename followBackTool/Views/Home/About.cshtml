@@ -1,0 +1,33 @@
+﻿
+@{
+    var lang = ViewData["Language"]?.ToString() ?? "es"; // Por defecto, español
+    string title;
+    string aboutText;
+
+    if (lang == "es")
+    {
+        title = "Sobre otros productos";
+        aboutText = "Aca puedes ver mis otras creaciones";
+    }
+    else if (lang == "en")
+    {
+        title = "More projects";
+        aboutText = "Here you can see my other creations";
+    }
+    else
+    {
+        title = "Sobre otros productos"; // Valor por defecto
+        aboutText = "Aca puedes ver mis otras creaciones";
+    }
+
+    ViewData["Title"] = title;
+}
+<h1 class="text-white" id="about-h1">@ViewData["Title"]</h1>
+
+<p class="text-white" id="about-p">@aboutText</p>
+
+@using HtmlAgilityPack;
+@using System.Globalization;
+
+
+

@@ -1,0 +1,98 @@
+﻿@using HtmlAgilityPack;
+@using System.Globalization;
+
+@{
+    var lang = ViewData["Language"]?.ToString() ?? "es"; // Por defecto, español
+    string title;
+    string message;
+    string greetingTitle;
+    string leadTutorial;
+    string nxtBtn;
+    string alertBox;
+    string uploadTitle;
+    string submitButtonText;
+
+    if (lang == "es")
+    {
+        title = "Indice";
+        message = "Por favor selecciona un archivo valido";
+        greetingTitle = "Hola!";
+        leadTutorial = "Sigue este tutorial para obtener los datos y saber quién te sigue de vuelta";
+        nxtBtn = "Continuar";
+        alertBox = "Por favor selecciona un archivo valido";
+        uploadTitle = "Sube tu archivo de informacion de seguidos y seguidores";
+        submitButtonText = "Subir Archivo";
+    }
+    else if (lang == "en")
+    {
+        title = "Index";
+        message = "Please select a valid file";
+        greetingTitle = "Hello!";
+        leadTutorial = "Follow this tutorial to get the data and know who follows you back";
+        nxtBtn = "Continue";
+        alertBox = "Please select a valid file";
+        uploadTitle = "Upload your followers/following information file";
+        submitButtonText = "Upload File";
+    }
+    else
+    {
+        title = "Indice"; // Valor por defecto
+        message = "Por favor selecciona un archivo valido";
+        greetingTitle = "Hola!";
+        leadTutorial = "Sigue este tutorial para obtener los datos y saber quién te sigue de vuelta";
+        nxtBtn = "Continuar";
+        alertBox = "Por favor selecciona un archivo valido";
+        uploadTitle = "Sube tu archivo de informacion de seguidos y seguidores";
+        submitButtonText = "Subir Archivo";
+    }
+
+    ViewData["Title"] = title;
+
+    string displayClass = "d-block text-light container mx-auto p-4";
+    string displayClass1 = "d-none";
+
+    if (ViewBag.Message == null)
+    {
+        displayClass = "d-block container mx-auto p-4";
+        displayClass1 = "d-none";
+    }
+
+    if (ViewBag.Message == message)
+    {
+        displayClass = "d-none";
+        displayClass1 = "d-block container mx-auto p-4";
+    }
+}
+
+<body>
+    <section class="text-center text-white @displayClass">
+        <article id="getInfo-article">
+            <h1 id="greeting-title" class="display-2">@greetingTitle</h1>
+            <p id="lead-tutorial" class="lead">@leadTutorial</p>
+            <div id="video-tutorial" class="ratio ratio-16x9">
+                <iframe id="youtube-video" scrolling="no" src="https://www.youtube.com/embed/z0-m_chL24s?si=eS8zYY5ifvMb1Ky-" allow="encrypted-media" width="100" height="100" frameborder="0"></iframe>
+            </div>
+
+            <button id="btn-continue" type="button" class="m-2 btn btn-primary">
+                <span id="nxt-btn">@nxtBtn</span>
+            </button>
+        </article>
+    </section>
+
+    <div id="alert-box" class="alert @displayClass1 alert-danger" role="alert">
+        @alertBox
+    </div>
+
+    <section id="uploadInfo-section" class="@displayClass1 text-white text-center p-5">
+        <div class="container">
+            <h1 class="display-4" id="upload-title">@uploadTitle</h1>
+            <form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <input type="file" class="form-control" id="fileUpload" name="file">
+                </div>
+                <button id="submit-button" type="submit" class="btn btn-primary" disabled>@submitButtonText</button>
+            </form>
+        </div>
+    </section>
+
+</body>
