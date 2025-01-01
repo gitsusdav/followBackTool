@@ -23,6 +23,6 @@ FollowBackTool is a web application designed to help Instagram users analyze the
 - An Instagram account
 
 ## Installation
-1. Just install Visual Studio 2022, ASP.Net MVC and run the code :)
+1. Just install Visual Studio 2022, ASP.Net MVC, clone repo and run the code :)
 
 
